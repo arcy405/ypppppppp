@@ -1,0 +1,127 @@
+en:
+  #JOB Vacancy
+  add_job_vancany: "Add Job Vacancy"
+  search_vacency: "Find Vacencies According To Topic"
+  v_art: "Arts"
+  v_business: "Business"
+  v_education: "Eductaion"
+  v_law: "Law"
+  v_media: "Media"
+  v_medical: "Medical"
+  v_service_industry: "Service"
+  v_tech: "Technollogy"
+  v_hotel: "Hotel"
+  v_other: "Others"
+  v_apply: "Apply Before"
+
+
+  # agents(index.html.erb)-------------------------
+
+  looking: "Who you looking for ?"
+  bus_book_agent: "Bus Booking Agents"
+  book_agent_name: "Name"
+  book_agent_address: "Address"
+  book_agent_phone: "Phone"
+  
+  #----------------------------------------------
+
+  # bus departure(bd) / (index.html.erb)-----------
+
+  bd_filter: "Filters"
+  bd_place_filter: "Place Filter"
+  bd_mnr_to: " Mahendranagar to"
+  bd_depart_date_filter: "Departure Date Filter"
+  maahakali: "Mahakali"
+  sunaulo: "Sunaulo"
+  pawandut: "Pawandoot"
+  suklafata: " Suklaphata"
+  bd_mngt: "Management"
+  bus_type_filter: "Vehicle Type Filter"
+  ac: "AC"
+  delux: "Delux"
+  hiace: "Hiace"
+  depart_at: "Departs At"
+  depart_date: "Depart Date"
+  #------------------------------------------------    
+
+
+  #about us-------------------------------------
+  about_us_text: "Mnyrp is Mahendranagar's local search engine which provides users with information regarding Mahendranagar. It's a search engine based on the products and services available in Mahendrangar, which makes it easier for users to search and locate the things they're looking for. With an aim of reducing digital divide in our country, Mnyrp focuses on providing the technological facilities to the residents of local areas. From products like clothes, electronics to services like rental, repair and other necessities like food, hospitals, every detail available in Mahendranagar can be searched using the search engine. This makes it a lot easier and convenient for locals and other people to find the service they're looking for in a click without much of a hassle."
+  #--------------------------
+  # realestate(re) / index.html.erb and show.html.erb-----------------------------------
+  sell_land: "Sell Land"
+  sell_house: "Sell House"
+  rent_house: "Rent House"
+  click_to_sell: "Click To Start SELLING"
+  buy_house_and_land: "Buy House/Land"
+  take_house_on_rent: "Get House on Rent"
+
+  #----------tourist(show.html.erb)--------------
+  about_place: "About Place"
+  location: "Location"
+  #----------MNR forum ( index and show)-----------
+  
+  
+
+  #-------------common attributes for more than one module (DRY= dont repeat yourself)---------------------------------
+  gmap: "See the place in GMAP"
+  view_more: "View More"
+  no_result: "No Results"
+  all: "All"
+  seller: "Seller"
+  contact: "Contact Us"
+  description_and_features: "Description & Features"
+  #----------------------------
+
+  #blood donation
+  new_donor: "Be a Donor"
+  alert_text: "For listing yourself as available and eligible donor, your blood pressure should be normal.You must be above 18 years old and weighing more than 45 kgs. You must not be using any kinds of regular drugs, alcohol or any such unhealhty consumptions. Incase of women, donor is not allowed to donate blood 8 days prior and after mensuration."
+  donorAll: "ALL"
+  kanchanpur: "Kanchanpur"
+  dadeldhura: "Dadeldhura"
+  kailali: "Kailali"
+  baitadi: "Baitadi"
+  darchula: "Darchula"
+  bajhang: "Bajhang"
+  achham: "Achham"
+  bajura: "Bajura"
+  doti: "Doti"
+  donorSearchName: "Search by Name..."
+
+  #professionals 
+  skill_register: "Register Yourself"
+  select_profession: "Select Profession"
+
+  #telephone directory 
+  emergency_numbers: "Emergency and Important Phone Numbers"
+  all_directory: "Telephone Directory"
+  #MNR_Marketplace 
+  add_product: "Add Product for Selling "
+  login_to_sell: " Log-In to Start Selling "
+  #events 
+  mnr: "MNR"
+  today: "Today"
+  add_event: "Add Event or Programme "
+  todays: "Today's"
+  events: " Events And Programmes"
+  no_events_today: "No Events Today "
+  upcoming: "Upcoming "
+  upevents: " Events and Programmes"
+  no_upcoming_events: "No Upcoming Events  "
+  #blood donors
+  login_to_become_donor: "Login to Become Blood Donor"
+  #pet Adoption 
+  add_pets: "Add Pets For Adoption  "
+  #covid-homepage 
+  nepal_data: "Nepal's Covid Data "
+  kanchanpur_data: "Kanchanpur's Covid Data "
+  confirmed: " Covid Confirmed"
+  recovered: "Recovered"
+  deaths: "Deaths"
+  Donate: "Donate For Oxygen Cylinders "
+  #models 
+  male: "male"
+  female: "female"
+  #tourists
+  add_new_places: "Add New Tourist Places"
+  sign_in_to_add_tourist: "Please Login To add Tourist Places"

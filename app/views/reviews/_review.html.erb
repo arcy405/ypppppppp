@@ -1,0 +1,17 @@
+<div id="comments" class="container-fluid">
+        <ul class="list-unstyled">
+              <span class="profileText">
+                <h5 class="text-primary"><%= review.name %><small class="text-muted float-right"><small>Submitted <%= time_ago_in_words(review.created_at) %> ago</small></small></h5>
+                <small class="text-primary">
+                     <% review.rating.to_i.times do  %>
+                     <span class="fa fa-star checked"></span>
+                     <% end %>
+                     <% review.blank_stars.times do  %>
+                     <span class="fa fa-star"></span>
+                     <% end %>
+                </small><hr />
+                 <%= review.comment %>
+               </span>
+            </li>
+        </ul>
+</div>

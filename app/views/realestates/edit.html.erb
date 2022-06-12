@@ -1,0 +1,21 @@
+<%= render 'Homepage/navmenu' %>
+<%= content_for :recaptcha_js do %>
+  <%= include_recaptcha_js %>
+  <% end %>
+<% @type=params[:category] %>
+<% @subType = params[:edit]%>
+<div class="form_wrapper">
+    <div class="form_container">
+      <div class="row clearfix">
+        <div class="">
+          <div class="container">
+            <% if @type == "rent" %>
+              <%= render partial: "editForm", type: @type, subType: @subType %>
+            <% elsif @type == "sell"%>
+              <%= render partial: "editFormSell", type: @type, subType: @subType %>
+            <% end %>    
+          <div>
+        </div>
+      </div>
+    </div>
+</div>

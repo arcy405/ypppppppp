@@ -1,0 +1,55 @@
+<%= form_for @event,html: { class:"needs-validation", :novalidate=>true } do |f| %>
+
+<!--------------Errors-------------------------------------->
+<% if @event.errors.any? %>
+  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+    <% @event.errors.full_messages.each do |message|%>
+        <p class="responsive-text"><%= message %> </p>
+      <%end%>
+  </div>
+<%end%>
+<!------------------------------------------------------------------------------->
+
+	<div class="input-group has-validation">
+		<%= f.text_field :title, placeholder: "#{t('event_placeholder1')}" ,class:"form-control mt-2" %>
+		<div class="invalid-feedback">
+			 Please enter a valid Event Title.
+		</div>
+    </div>
+    <%= label :date, " #{t('event_placeholder2')}",class:" mt-2" %>
+    <div class="input-group has-validation">
+    	<%= f.date_field :date ,class:"form-control" %>
+		<div class="invalid-feedback">
+			 Please select a valid Event Date.
+		</div>
+    </div>
+    <div class="input-group has-validation">
+    	<%= f.text_field :location, placeholder: "#{t('event_placeholder3')}" ,class:"form-control mt-2" %>
+		<div class="invalid-feedback">
+			 Please enter a valid Event Location.
+		</div>
+    </div>
+    <div class="input-group has-validation">
+    	<%= f.text_area :description, placeholder: "#{t('event_placeholder4')}" ,class:"form-control mt-2" %>
+		<div class="invalid-feedback">
+			 Please enter a valid Event Description.
+		</div>
+    </div>
+
+	<!-------------form buttons-------------------->
+  <div class="d-flex flex-row mt-2">
+    <div class="flex-fill">
+      <%= link_to :back do %>
+        <span class="cancel-button form-control font-weight-bold text-center"> <%= t('cancel') %></span>
+      <% end %>
+    </div>
+    <div class="flex-fill">
+      <%= f.submit "#{t('save')}" , class:"button form-control font-weight-bold", data: { disable_with: "Saving..." } %>
+    </div>
+  </div>
+  <!---------------------#########################-------------------------->
+	<%= recaptcha_action('events') %>
+<% end %>

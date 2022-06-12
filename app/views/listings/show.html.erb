@@ -1,0 +1,116 @@
+<!------------------------------for map----------------------------------->
+  <script src='https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js' defer></script>
+  <link href='https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css' rel='stylesheet' />
+
+<% content_for :title, "#{@listdetails.name}-MNRYP" %>
+
+<%= render 'Homepage/navmenu' %>
+<div class="container-fluid">
+ <!----------------------------------------breadcrumb section-------------------------------------->
+        <div class="row p-3">
+            <div class="breadcrumb-default">
+                <a href="<%= root_path %>" style="text-decoration: none"><i class="fas fa-home"></i>Home/</a>
+                <%= link_to "#{@listdetails.tag.title}", :back,style:"text-decoration: none" %>
+                    <a href="#" style="text-decoration: none">/<%= @listdetails.name %></a>
+            </div>
+        </div>
+        <!------------------------------------------------------------------------------->
+      <!--------------------------------------------------------->
+             <div class="row">
+                    <div class="col-md-6 col-xs-12 text-center border-right border-secondery">
+                        <% if @listdetails.image.present? %>
+
+                            <%= cl_image_tag(@listdetails.image_url, :quality=>"auto:low",:class=>"list-image img-fluid",:fetch_format=>"auto",:flags=>"lossy") %>
+                        <%end%>  
+                    </div>
+                    <div class="col-xs-6 col-md-6 col-sm-12">
+                        <h2>
+                            <%= @listdetails.name %>
+                        </h2>
+                        <p>
+                            <span class="badge badge-info">Contact Us</span>
+                        </p>
+                            <p class="card-text"><i class="fas fa-user-alt"></i>&nbsp;<%= @listdetails.owner %></p>
+                            <p class="card-text"><i class="fas fa-map-marker-alt"></i>&nbsp;<%= @listdetails.address %></p>
+                            <p class="card-text"><i class="fas fa-phone-alt"></i>&nbsp;<%= @listdetails.phone %></p>
+                        <p>
+                            <span class="badge badge-info">Rating</span>
+                            <% @listdetails.reviews.average(:rating).to_i.times do %>
+                                <span class="fa fa-star checked"></span>
+                            <% end %>
+                            <% (5-@listdetails.reviews.average(:rating).to_i).times do %>
+                                <span class="fa fa-star"></span>
+                            <% end %>
+                        </p>   
+                    </div>
+    </div>
+     
+
+       <!----------description section --------------------------------->
+            <nav>
+            <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+                <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true" style="text-decoration: none">Location</a>
+                <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false" style="text-decoration: none">Services</a>
+            </div>
+            </nav>
+    <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                <!--The div element for the map -->
+                <% lat = @listdetails.lattitude %>
+                <% long = @listdetails.longitude %>
+                 <div class="embed-responsive embed-responsive-16by9">
+                  <iframe class="embed-responsive-item" src="http://maps.google.com/maps?q=<%= lat %>,<%= long %>&z=15&output=embed" loading="lazy" allowfullscreen></iframe>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                 <div class="m-4"><%= @listdetails.description %></div>                    
+            </div>
+    <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+    </div>                    
+    </div>
+<hr />
+    <!---------------form for review --------------->
+    <div class="">
+
+        <div class="text-md text-mute mt-4">Review This Place</div>
+        <div id="comment-section">
+        <div class="form-group" id="comment">
+            <%= form_with(model: [@list, @list.reviews.build]) do |f| %>
+                <div class="rating">
+                        <%= f.radio_button(:rating, "5") %> <%= f.label(:rating.to_s + "_5" ) %> 
+                        <%= f.radio_button(:rating, "4") %> <%= f.label(:rating.to_s + "_4"  ) %> 
+                        <%= f.radio_button(:rating, "3") %> <%= f.label(:rating.to_s + "_3" ) %> 
+                        <%= f.radio_button(:rating, "2") %> <%= f.label(:rating.to_s + "_2" ) %> 
+                        <%= f.radio_button(:rating, "1") %> <%= f.label(:rating.to_s + "_1" ) %>
+                </div><br /><br />
+                <div class="row mt-2">
+                    <div class="col-md-6 col-12">
+                      <%= f.text_field :name, placeholder: "Name", class:"form-control w-100"  %>
+                   </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-md-6 col-12">
+                     <%= f.text_area :comment, placeholder: "Add a comment", class:"form-control w-100" %>
+                   </div>
+                </div>
+                    <div class="mt-2">
+                        <%= f.submit "Add Review", class:"button",style:"width:15% !important;" %>
+                    </div>
+                <% end %>
+            </div>
+            <div class="panel-body">
+           <h4 class="ml-2">Recent Comments</h4>
+            <% if @list.reviews.count == 0 %>
+                <p id="nocomments">No comments yet. Be the first one to review this place.</p>
+            <% end %>
+    </div>
+    
+        <%= render @list.reviews.order("created_at DESC").limit(10) %>
+        
+    </div>
+    <!------------------------------------------------------------------->
+</div>
+<!-------------------------for star rating----------------------->
+
+<!------------------------------------------------------->
+

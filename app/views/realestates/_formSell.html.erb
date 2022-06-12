@@ -1,0 +1,97 @@
+
+<%= form_for @realestate  do |f| %> 
+
+<!--------------Errors-------------------------------------->
+  <% if @realestate.errors.any? %>
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+      <% @realestate.errors.full_messages.each do |message|%>
+          <p class="responsive-text"><%= message %> </p>
+        <%end%> 
+    </div>
+  <%end%>
+  <!------------------------------------------------------------------------------->
+ <!-------------hidden field to capture user id------------------->
+    <%= f.hidden_field :user_id, value: "#{current_user.id}"  %> 
+    <%= f.hidden_field :ptype, value: @type  %>
+  <!------------------------------------------------>
+            <div class="input_field"> 
+              <%= f.text_field :seller_name, placeholder: "Seller Name", :required => true%>
+            </div>
+            <div class="row clearfix">
+              <div class="col_half">
+                <div class="input_field"> 
+                    <%= f.text_field :seller_phone, placeholder: "Seller Phone", :required => true%>
+                </div>
+              </div>
+              <div class="col_half">
+                <div class="input_field"> 
+                <% if @type == "rent"%>
+                    <%= f.text_field :price, placeholder: "Renting Price", :required => true%>
+                    <% else %>
+                    <%= f.text_field :price, placeholder: "Selling Price", :required => true%>
+                    <% end %>
+                </div>
+              </div>
+            </div>
+            <div class="input_field"> 
+              <%= f.text_field :propertyname, placeholder: "Property Name", :required => true%>
+            </div>
+            <div class="input_field"> 
+              <%= f.text_field :address, placeholder: "Address", :required => true%>
+            </div>
+            <div class="input_field"> 
+              <%= f.text_field :description, placeholder: "Add Description", :required => true%>
+            </div>
+            <div class="row clearfix">
+              <div class="col_half">
+                <div class="input_field"> 
+                  <%= f.text_field :latitude, placeholder: "Latitude"%>
+                </div>
+              </div>
+              <div class="col_half">
+                <div class="input_field"> 
+                  <%= f.text_field :longitude, placeholder: "Longitude"%>
+                </div>
+              </div>
+            </div>
+            <%# -----------options for buton select----------------- %>
+          
+
+         
+<button type="button" onclick="sellHousee()" id="sellHouse" class="btn btn-outline-warning ">House</button>
+            <button type="button" onclick="landd()" id="land"  class="btn btn-outline-warning ">Land</button>
+                          <%= f.hidden_field :pfor, id: "my_house", value: ""  %>
+            <div id="pages">
+              <div id="sellHouse" class="" style="display: none;">
+              <%= render partial: "rent_house", locals: {f: f} %>
+              </div>
+              <div id="land" class="" style="display: none;">
+                <%= render partial: "sell_land", locals: {f: f}%>
+              </div>
+             
+            </div>  
+            <%# ------------------------------------------------------- %>
+ <%= f.submit "#{t('save')}" , class:"button form-control text-white font-weight-bold mt-2" %>
+
+<% end %>  
+<%# -------------form jquery----------- %>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<%# ----------------------------------- %>
+<script>
+function sellHousee(){
+	var txt = "house";
+	document.getElementById("my_house").value = txt;
+  console.log(document.getElementById("my_house").value);
+
+}
+function landd(){
+	var txt = "land";
+	document.getElementById("my_house").value = txt;
+    console.log(document.getElementById("my_house").value);
+
+}
+
+</script>

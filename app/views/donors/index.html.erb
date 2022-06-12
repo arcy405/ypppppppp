@@ -1,0 +1,322 @@
+<% content_for :title, "List of donors-MNRYP" %>
+<%= render 'Homepage/navmenu' %>
+<!------------------herosection card------------------------------------------------------->
+
+   <div class="container">
+    <div class="responsive-text text-black mb-2"><strong><%= t('language_select') %></strong> </div>
+    <% if I18n.locale.to_s == "np" %>
+        <% active_class_np = "border-warning rounded-4" %>
+    <% else %>
+            <% active_class_en = "border-warning rounded-4" %>
+    <% end %>
+    <%= link_to set_mylanguage_np_path(donors: "donors") do %>
+    <span  class="btn-outline-warning rounded p-2 mx-2 border <%= active_class_np %>"><strong><%= t('nepali') %></strong><img src="https://res.cloudinary.com/di7sekeem/image/upload/v1619515739/service_mnryp/nepaila_n8dz06.png" style="height: 25px; width: 25px;" /></span>
+    <% end %>
+    <%= link_to set_mylanguage_en_path(donors: "donors") do %>
+       <span  class=" btn-outline-warning rounded p-2 mx-2 border <%= active_class_en %>"><strong><%= t('english') %></strong><img src="https://res.cloudinary.com/di7sekeem/image/upload/v1619845675/service_mnryp/english_lang_ehccug.png"  style="height: 25px; width: 25px;" /></span>
+    <% end %>
+    </div>
+
+<!----------------------donors and form------------------------------>
+<div class="container-fluid mt-2">
+<div class="row">
+<div class="col-md-12">
+<div class="panel panel-default">
+<div class="panel-body">
+    <div class="d-flex">
+        <div class="justify-content-left">
+            <div class="mt-4  mb-2">
+                <% if user_signed_in? %>
+                    <%= link_to new_donor_path, class:"font-weight-bold  btn bg-success" do %>
+                    <%= t('new_donor') %><i class="fas fa-plus-circle ml-2"></i>
+                    <% end %>
+                <% else %>
+                    <%= link_to user_session_path do %>
+                        <span  class="btn-outline-danger rounded p-2 border"><%= t('login_to_become_donor') %></span>
+                    <% end %>
+                <% end %>  
+            </div>
+        </div>
+    </div>
+<div class="row">
+         <div class="col-md-12">
+          <%= form_tag donors_path, :method =>"get" do %>
+                <% arcy = "all"%>
+                <%= hidden_field_tag "district", arcy %>
+                <% if @districtID == "all"%>
+                    <%= button_tag(type: "submit", class: "btn btn-danger  mt-2" ) do  %>
+                            <%= t('donorAll') %>
+                    <% end %>
+                <% else %>    
+                    <%= button_tag(type: "submit", class: "btn btn-primary  mt-2") do  %>
+                            <%= t('donorAll') %>
+                    <% end %>
+                <% end %> 
+                <% end %>
+
+                <%= form_tag donors_path, :method =>"get" do %>
+                <% arcy = "Kanchanpur"%>
+                <%= hidden_field_tag "district", arcy %>
+                <% if @districtID == "Kanchanpur"%>
+                    <%= button_tag(type: "submit", class: "btn btn-danger  mt-2" ) do  %>
+                            <%= t('kanchanpur') %>
+                    <% end %>
+                <% else %>    
+                    <%= button_tag(type: "submit", class: "btn btn-primary  mt-2") do  %>
+                            <%= t('kanchanpur') %>
+                    <% end %>
+                <% end %> 
+                <% end %>
+
+                <%= form_tag donors_path, :method =>"get" do %>
+                <% arcy = "Dadeldhura"%>
+                <%= hidden_field_tag "district", arcy %>
+                  <% if @districtID == "Dadeldhura"%>
+                    <%= button_tag(type: "submit", class: "btn btn-danger  mt-2" ) do  %>
+                            <%= t('dadeldhura') %>
+                    <% end %>
+                <% else %>
+                    <%= button_tag(type: "submit", class: "btn btn-primary  mt-2") do  %>
+                            <%= t('dadeldhura') %>
+                    <% end %>
+                <% end %>
+                <% end %>
+
+                <%= form_tag donors_path, :method =>"get" do %>
+                <% arcy = "Kailali"%>
+                <%= hidden_field_tag "district", arcy %>
+                 <% if @districtID == "Kailali"%>
+                    <%= button_tag(type: "submit", class: "btn btn-danger  mt-2" ) do  %>
+                            <%= t('kailali') %>
+                    <% end %>
+                <% else %>
+                    <%= button_tag(type: "submit", class: "btn btn-primary  mt-2") do  %>
+                            <%= t('kailali') %>
+                    <% end %>
+                <% end %>
+                <% end %>
+
+                <%= form_tag donors_path, :method =>"get" do %>
+                <% arcy = "Baitadi"%>
+                <%= hidden_field_tag "district", arcy %>
+                 <% if @districtID == "Baitadi"%>
+                    <%= button_tag(type: "submit", class: "btn btn-danger  mt-2" ) do  %>
+                            <%= t('baitadi') %>
+                    <% end %>
+                <% else %>
+                    <%= button_tag(type: "submit", class: "btn btn-primary  mt-2") do  %>
+                            <%= t('baitadi') %>
+                    <% end %>
+                <% end %>
+                <% end %>
+
+                <%= form_tag donors_path, :method =>"get" do %>
+                <% arcy = "Darchula"%>
+                <%= hidden_field_tag "district", arcy %>
+                 <% if @districtID == "Darchula"%>
+                    <%= button_tag(type: "submit", class: "btn btn-danger  mt-2" ) do  %>
+                            <%= t('darchula') %>
+                    <% end %>
+                <% else %>
+                    <%= button_tag(type: "submit", class: "btn btn-primary  mt-2") do  %>
+                            <%= t('darchula') %>
+                    <% end %>
+                <% end %>
+                <% end %>
+
+                <%= form_tag donors_path, :method =>"get" do %>
+                <% arcy = "Bajhang"%>
+                <%= hidden_field_tag "district", arcy %>
+                 <% if @districtID == "Bajhang"%>
+                    <%= button_tag(type: "submit", class: "btn btn-danger  mt-2" ) do  %>
+                            <%= t('bajhang') %>
+                    <% end %>
+                <% else %>
+                    <%= button_tag(type: "submit", class: "btn btn-primary  mt-2") do  %>
+                            <%= t('bajhang') %>
+                    <% end %>
+                <% end %>
+                <% end %>
+
+                <%= form_tag donors_path, :method =>"get" do %>
+                <% arcy = "Accham"%>
+                <%= hidden_field_tag "district", arcy %>
+                  <% if @districtID == "Accham"%>
+                    <%= button_tag(type: "submit", class: "btn btn-danger  mt-2" ) do  %>
+                            <%= t('achham') %>
+                    <% end %>
+                <% else %>
+                    <%= button_tag(type: "submit", class: "btn btn-primary  mt-2") do  %>
+                            <%= t('achham') %>
+                    <% end %>
+                <% end %>
+                <% end %>
+
+                <%= form_tag donors_path, :method =>"get" do %>
+                <% arcy = "Bajura"%>
+                <%= hidden_field_tag "district", arcy %>
+                 <% if @districtID == "Bajura"%>
+                    <%= button_tag(type: "submit", class: "btn btn-danger  mt-2" ) do  %>
+                            <%= t('bajura') %>
+                    <% end %>
+                <% else %>
+                    <%= button_tag(type: "submit", class: "btn btn-primary  mt-2") do  %>
+                            <%= t('bajura') %>
+                    <% end %>
+                <% end %>
+                <% end %>
+
+                <%= form_tag donors_path, :method =>"get" do %>
+                <% arcy = "Doti"%>
+                <%= hidden_field_tag "district", arcy %>
+                 <% if @districtID == "Doti"%>
+                    <%= button_tag(type: "submit", class: "btn btn-danger  mt-2" ) do  %>
+                            <%= t('doti') %>
+                    <% end %>
+                <% else %>
+                    <%= button_tag(type: "submit", class: "btn btn-primary  mt-2") do  %>
+                            <%= t('doti') %>
+                    <% end %>
+                <% end %>
+                <% end %>
+        </div>
+
+        <div class="col-md-6">
+            <% if !params[:blood_group] %>
+            <div class="btn-group">
+                <button class="btn btn-primary filter-button mt-2" data-filter="all">  <%= t('all') %></button>
+                <button class="btn btn-danger filter-button mt-2" data-filter="Apos">A+</button>
+                <button class="btn btn-danger filter-button mt-2" data-filter="Aneg">A-</button>
+                <button class="btn btn-danger filter-button mt-2" data-filter="Bpos">B+</button>
+                <button class="btn btn-danger filter-button mt-2" data-filter="Bneg">B-</button>
+                <button class="btn btn-danger filter-button mt-2" data-filter="Opos">O+</button>
+                <button class="btn btn-danger filter-button mt-2" data-filter="Oneg">O-</button>
+                <button class="btn btn-danger filter-button mt-2" data-filter="ABpos">AB+</button>
+                <button class="btn btn-danger filter-button mt-2" data-filter="ABneg">AB-</button>
+
+            <% else %>
+                <%= link_to "SEE ALL",donors_path,class:"btn-outline-danger border p-2 rounded" %>
+            <% end %>
+            </div>
+        </div>
+    <%# ------------ %>
+   
+
+    
+</div >
+    <br/>
+    <!-------------------donnars list------------------------>
+    <% if params[:blood_group] %>
+        <% @donors= @donors.where("blood_group=?",params[:blood_group]) %>
+    
+    <% end %>
+     <div>
+      <form class='searchbox'>
+    <input class="searchbar mb-2" type="text" onkeyup="filter()" placeholder="<%= t('donorSearchName')%>" name="search">
+  </form>
+    <div class="row">
+    
+        <% @donors.each do |donor| %>
+        
+         <% if donor.blood_group.include?'+' %>
+         	<% bloodgroup = donor.blood_group.sub! '+','pos' %>
+         <% else %>
+         	<% bloodgroup = donor.blood_group.sub! '-','neg' %>
+         <% end %>
+         
+            <div class="cardd col-md-3 mb-4 filter <%= bloodgroup %>">
+            	<div class="media align-middle border shadow">
+                    <div class="card bloodgroup">
+                        <div class="card-body">
+                        	<% if donor.blood_group.include?'pos' %>
+                             	<% bloodgroup = donor.blood_group.sub! 'pos','+' %>
+                             <% else %>
+                             	<% bloodgroup = donor.blood_group.sub! 'neg','-' %>
+                             <% end %>
+                          <%= donor.blood_group %>
+                        </div>
+                      </div>
+						<div class="media-body align-middle mx-2">
+							
+							<h4 class="title text-capitalize responsive-text"> 
+                            <span> <h6 class="font-weight-bold "> <%= donor.name %> </h6> </span> <%=donor.gender %>  <br>
+								<span>
+                                Age: <%= donor.age %></span><br />
+                                <span class="summary text-capitalize responsive-text"><%= donor.address %></span><br>
+                                <%# blood donated condition --------------------- %>
+                                <div class="mt-1">
+                                    <% if donor.blood_donated == true %>
+                                         <span class="badge bg-success text-white ">  Donated Before !</span> </span>
+                                    <% else %>
+                                    <span class="summary text-capitalize responsive-text fs-5 text-danger " id="donated-times"> <p>  Not Donated Before !</p> </span> 
+                                    <% end %>
+                                    <div class="mt-1">
+                                        <% if donor.blood_donated == true &&  donor.blood_donated_times  %>
+                                            <span class="summary text-capitalize responsive-text fs-5 text-success" id="donated-times"> <p>  <span class="font-weight-bold"><%= donor.blood_donated_times %> </span>  <span class="text-dark">Times </span> </p> </span>
+                                        <% end %>
+                                    </div>
+                                </div>
+                                <%# ---------------------------------- %>
+                            <a href="tel:<%= donor.phone1 %>" class="phoneMe" style="text-decoration:none" >
+                            <% if !donor.dont_display_phone %>
+                                <span class="phone mt-4"><i class="fas fa-mobile-alt mr-2"></i><%=donor.phone1 %></span>
+                            <% end %>
+                            </a>
+							</h4>
+						</div>
+                        <% if user_signed_in? && current_user.id === donor.user_id %>
+                            <div class="d-flex flex-row-reverse p-2">
+                                <div>
+                                    <%= link_to  donor, method: :delete, data: { confirm: 'Are you sure?' } do %><i class="fas fa-trash-alt text-danger"></i><% end %>
+                                </div>
+                                <div class="mr-2 ml-2">
+                                    <%= link_to  edit_donor_path(donor) do %><i class="far fa-edit text-primary"></i><% end %>
+                                </div>
+                            </div>
+                        <% end %>
+
+				</div>
+            </div>
+        <%end%>
+    </div>
+<!---------------------------------------------------------------------------------------->
+	</div>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+
+
+
+<style>
+form {
+    display: inline-block; //Or display: inline; 
+}
+</style>
+
+<style>
+::marker { 
+  color: white;
+}
+</style>
+
+
+
+<script>
+function filter() {
+  let input = document.querySelector('.searchbar').value //<-- Changed to querySelector
+  input = input.toLowerCase();
+  let cards = document.querySelectorAll('.cardd'); //<-- Changed to querySelectorAll with '.card' selector.
+
+  //loop over cards and compare search with title.
+  cards.forEach((el) => {
+    let title = el.querySelector('.title').textContent.toLowerCase();
+    el.style.display = title.includes(input) ? "list-item" : "none";
+  });
+}
+</script>
+
+
+ 

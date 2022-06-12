@@ -1,0 +1,42 @@
+
+    <div class="container-fluid mt-4">
+	<div class="container-fluid ">
+<div class="alert alert-warning" role="alert">
+  <h4 class="alert-heading"><i class="fas fa-home"></i> <%= @realestate.propertyname %></h4>
+  <p>
+    <i class="fas fa-user"></i> <b>Seller Name: <%= @realestate.seller_name %></b><br/>
+    <i class="fas fa-map-marker-alt"></i> <b><%= @realestate.address%></b><br/>
+    <a href="tel:<%= @realestate.seller_phone %>" style="text-decoration:none; color: inherit;" >
+      <span class="phone mt-4"><i class="fas fa-phone"></i> <b>Contact Number: <%= @realestate.seller_phone%></b></span>
+    </a>
+    <% if @realestate.ptype === "rent" %>
+	    <%= link_to "Go Back",realestates_rent_path, class:"badge bg-warning text-dark ml-2", style:"text-decoration:none" %>
+    <% elsif @realestate.ptype === "sell" %>
+	    <%= link_to "Go Back",realestates_sell_path, class:"badge bg-warning text-dark ml-2", style:"text-decoration:none" %>
+    <% end %>
+  </p>
+  <hr>
+  <p class="mb-0"><%= @realestate.description%></p>
+</div>
+  
+
+    <div class="card-columns">
+        <% @realestate.realestate_images.each do |photo| %>
+            <div class="card ">
+              <a class="thumbnail" href="#" data-image-id="" data-toggle="modal" data-title="<%= @realestate.seller_name %>"
+                         data-image="<%= photo.image %>" data-target="#image-gallery">
+            <%= cl_image_tag(photo.image, :quality=>"auto:low",:class=>"card-img-top img-responsive",:fetch_format=>"auto",:flags=>"lossy",loading:"lazy") %>
+            </a>
+           </div>
+        <% end %>
+    </div>
+</div>
+
+</div>
+
+<div id="realestatteMap" class="container-fluid" >
+<strong> <i class="fas fa-map-marked-alt"></i> <%= t('gmap') %> </strong> <br>
+<div class="embed-responsive embed-responsive-16by9">
+          <iframe class="embed-responsive-item" src="https://maps.google.com/maps?q=<%= @realestate.latitude %>,<%= @realestate.longitude %>&z=15&output=embed" loading="lazy" allowfullscreen></iframe>
+        </div>
+</div>

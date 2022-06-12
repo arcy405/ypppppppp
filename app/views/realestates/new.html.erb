@@ -1,0 +1,20 @@
+<%= render 'Homepage/navmenu' %>
+<%= content_for :recaptcha_js do %>
+  <%= include_recaptcha_js %>
+  <% end %>
+<%@type=params[:category] %>
+<div class="form_wrapper">
+    <div class="form_container">
+      <div class="row clearfix">
+        <div class="">
+          <div class="container">
+            <% if @type == "rent" %>
+              <%= render partial: "form", type: @type %>
+            <% elsif @type == "sell"%>
+              <%= render partial: "formSell", type: @type %>
+            <% end %>    
+          <div>
+        </div>
+      </div>
+    </div>
+</div>

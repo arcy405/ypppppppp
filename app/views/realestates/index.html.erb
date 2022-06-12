@@ -1,0 +1,28 @@
+<% content_for :title, "Real Estate-MNRYP" %>
+  <%= render 'Homepage/navmenu' %>
+
+<body class="homepage">
+ <div class="wrapper">
+ <%= link_to realestates_sell_path do %>
+        <button class="button-71 saleButton  " role="button" >BUY</button>
+      <% end %>
+
+      <% if user_signed_in? %>
+        <%= link_to new_realestate_path(category:"sell"), realestates: @Realestates do %>
+          <button class="button-71 saleButton mt-2 " role="button" >SELL</button>
+        <% end %>
+      <% else %>
+        <%= link_to user_session_path do %>
+          <button class="button-71 saleButton mt-2 " role="button" >SELL</button>
+        <% end %>
+      <% end %>
+
+<%= link_to realestates_rent_path(category:"rent"), realestates: @Realestates do %>
+          <button class="button-71 saleButton mt-2 " role="button" >RENT</button>
+        <% end %>
+      
+
+ </div>
+<body>
+
+

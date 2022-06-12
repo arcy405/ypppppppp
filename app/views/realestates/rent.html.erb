@@ -1,0 +1,119 @@
+<% content_for :title, "List of rent-MNRYP" %>
+<%= render 'Homepage/navmenu' %>
+<div class="container">
+    <div class="">
+    <% if user_signed_in? %>
+         <%= link_to new_realestate_path(category:"rent"), style:"text-decoration:none; font-size: 20px; color:orange;" do %>
+            Add on Rent<i class="fas fa-plus-circle ml-2"></i>
+        <% end %>
+      <% else %>
+          <%= link_to user_session_path, style:"text-decoration:none; font-size: 20px; color:orange;" do %>
+          
+          Add on Rent<i class="fas fa-plus-circle ml-2"></i>
+          
+        <% end %>
+      <% end %>
+       
+    </div>
+    <div class="row">
+        <div class="col-lg-12 card-margin">
+            <div class="card mt-2">
+                <div class="btn-group estate_group flex-wrap" role="group" aria-label="Basic example">
+                    <button type="button" class="btn btn-warning filter-button" data-filter="house">House</button>
+                    <button type="button" class="btn btn-warning filter-button" data-filter="flat">Flat</button>
+                    <button type="button" class="btn btn-warning filter-button" data-filter="room">Room</button>
+                    <button type="button" class="btn btn-warning filter-button" data-filter="shutter">Shutter</button>
+                    <button type="button" class="btn btn-warning filter-button" data-filter="all">All</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="rentEstate">
+    <section class="light">
+    <div class="container py-2">
+      <% @Realestate_rent.each do |rent| %>
+        <article class="postcardEstate light yellow filter <%= rent.pfor %> ">
+          <a class="oval postcard__img_link" href="#">
+            <%= rent.realestate_images.each do |prop_img| %>
+                      <% if prop_img.image == nil %>
+                        <img src="https://res.cloudinary.com/di7sekeem/image/upload/v1614668262/mnryplogo_arr1rm.png", class="postcard__imgEstate">
+                      <% else %>
+                        <%= cl_image_tag(prop_img.image, :quality=>"auto:low",:fetch_format=>"auto",:flags=>"lossy" , :class=>"postcard__imgEstate", loading:"lazy") %>
+                        <% break %>
+                      <% end %>
+                    <% end %>
+            <% if rent.pfor == "house" %>
+              <span class="top-right badge badge-pill badge-danger">House</span>
+            <% elsif rent.pfor == "flat" %>
+              <span class="top-right badge badge-pill badge-danger">Flat</span>
+            <% elsif rent.pfor == "room" %>
+              <span class="top-right badge badge-pill badge-danger">Room</span>
+            <% elsif rent.pfor == "shutter" %>
+              <span class="top-right badge badge-pill badge-danger">Shutter</span>
+            <% end %>
+          </a>
+          <div class="postcard__textEstate t-dark">
+            <h1 class="postcard__title yellow"><a href="#"><%= rent.propertyname %></a></h1>
+            <div class="postcard__subtitle">
+              <time datetime="2020-05-25 12:00:00">
+                <% if rent.latitude.nil? || rent.longitude.nil? %>
+                  <i class="fas fa-map-marker-alt"></i> <b><%= rent.address%></b>
+                <% else %>
+                  <%=  link_to  realestate_path(rent, anchor: "realestatteMap"), style:"text-decoration:none" do %><i class="fas fa-map-marker-alt"></i> <b><%= rent.address%></b><%end%>
+                <% end %>
+                , <span class="badge badge-pill badge-danger">RS: <%= rent.price %></span>
+              </time>
+            </div>
+            <div class="postcard__bar"></div>
+            <div class="postcard__preview-txt"><%= rent.description %> <br/>
+            <b>
+            <% if rent.pfor == "house" %>
+             <% if rent.bedroom != "" %><%= rent.bedroom %> Bedroom,<%end%>
+             <% if rent.kitchen != "" %><%= rent.kitchen %> Kitchen,<%end%>
+              <% if rent.hall != "" %><%= rent.hall %> Hall,<%end%>
+             <% if rent.bathroom != "" %><%= rent.bathroom %> Bathroom,<%end%>
+              <% if rent.floor != "" %><%= rent.floor %> Floor<%end%>
+              <% if rent.garden == true %>with Garden<%end%>
+            <% elsif rent.pfor == "flat" %>
+               <% if rent.flatBedroom != "" %><%= rent.flatBedroom %> Bedroom,<%end%>
+             <% if rent.flatKitchen != "" %><%= rent.flatKitchen %> Kitchen,<%end%>
+              <% if rent.flatHall != "" %><%= rent.flatHall %> Hall,<%end%>
+             <% if rent.flatBathroom != "" %><%= rent.flatBathroom %> Bathroom,<%end%>
+              <% if rent.flatFloor != "" %><%= rent.flatFloor %> Floor<%end%>
+              <% if rent.baranda == "1" %>with Balcony<%end%>
+            <% elsif rent.pfor == "room" %>
+                <% if rent.roomBedroom != "" %><%= rent.roomBedroom %> Bedroom,<%end%>
+             <% if rent.roomKitchen == "1" %>with Kitchen<%end%>
+             <% if rent.roomBathroom == "1" %> Bathroom<%end%>
+              <% if rent.roomFloor != "" %>on <%= rent.roomFloor %> Floor<%end%>
+            <% else %>
+             <% if rent.roof != "" %><%= rent.roof %> Room,<%end%>
+             <% if rent.shutterPfor  != "" %>on <%= rent.shutterPfor  %> Floor<%end%>
+              <% if rent.length != "" && rent.breadth != "" %><%= rent.length %>ft x <%= rent.breadth%>ft<%end%>
+            <% end %>      
+            </b> 
+            </div>
+            <ul class="postcard__tagbox">
+              <li class="tag__item"><i class="fas fa-user"></i> <b>Seller Name: <%= rent.seller_name %></b></li>
+                <li class="tag__item"><a href="tel:<%= rent.seller_phone %>" style="text-decoration:none" >
+                                <span class="phone mt-4"><i class="fas fa-phone"></i> <b>Contact Number: <%= rent.seller_phone%></b></span>
+                            </a></li>
+               <li class="tag__item"><%=  link_to  realestate_path(rent), style:"text-decoration:none" do %><i class="fas fa-arrow-alt-circle-right"></i> <b>Show More</b><%end%></li>
+               <% if user_signed_in? && current_user.id === rent.user_id %>
+                  <div class="d-flex flex-row-reverse p-2">
+                      <div>
+                          <%= link_to  rent, method: :delete, data: { confirm: 'Are you sure?' } do %><i class="fas fa-trash-alt text-danger"></i><% end %>
+                      </div>
+                      <div class="mr-2 ml-2">
+                      <% @edit = rent.pfor %>
+                          <%= link_to  edit_realestate_path(rent, category:"rent", edit: @edit) do %><i class="far fa-edit text-primary"></i><% end %>
+                      </div>
+                  </div>
+              <% end %>
+            </ul>
+          </div>
+        </article>
+      <% end %>
+    </div>
+  </section>

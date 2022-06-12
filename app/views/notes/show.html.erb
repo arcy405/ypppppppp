@@ -1,0 +1,9 @@
+<div class="card-columns">
+        <% @subject.notes.each do |note| %>
+            <div class="card ">
+              <%= note.name %>
+            </a>
+                <a target="_blank" href="<%= note.note_pdf %>"><i class="fas fa-hand-point-right"></i> open</a><br/>
+           </div>
+        <% end %>
+    </div>

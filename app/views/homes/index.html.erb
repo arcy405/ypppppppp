@@ -1,0 +1,45 @@
+<html>
+<head>
+
+  	<meta name="turbolinks-visit-control" content="reload">
+    <meta name="turbolinks-cache-control" content="no-cache">
+    
+</head>
+<body>
+
+ <% content_for :title, "Welcome to MNRYP" %>
+ <%= render partial: 'Homepage/header', formats: :html %>
+	 <div class="container text-center mt-2">
+	   <%= render 'Homepage/covid_tracker' %>
+	</div>
+
+	 <div class="container-fluid my-2">
+			<%= render 'Homepage/services' %>
+	 </div>
+
+	 <div class="container-fluid my-2">
+	 	<div class="row">
+	 		<div class="col-md-8">
+	 			<%= render 'Homepage/top_services' %>
+	 		</div>
+	 		<div class="col-md-4">
+	 			<div class="py-2 mx-2">
+ 			 <div class="fb-page" data-href="https://www.facebook.com/mnryp/" data-tabs="timeline" data-width="" data-height="1000" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/mnryp/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/mnryp/">MNR YP</a></blockquote></div>
+ 			</div>
+	 		</div>
+	 	</div>
+ 			
+	 </div>
+	 <!-- Load Facebook SDK for JavaScript -->
+      <div id="fb-root"></div>
+      
+      <!-- Your Chat Plugin code -->
+      <div class="fb-customerchat"
+        attribution="setup_tool"
+        page_id="779448289066140">
+      </div>
+</body>
+</html>
+
+
+       

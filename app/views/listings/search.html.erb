@@ -1,0 +1,5 @@
+<% content_for :title, "Search results-MNRYP" %>
+<%= render 'Homepage/navmenu' %>
+<% @result.each do |result| %>
+  <%= result.name %>
+<% end %>
